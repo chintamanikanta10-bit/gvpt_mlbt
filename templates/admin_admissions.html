@@ -1,0 +1,46 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+  <h2 style="font-family: 'Outfit', sans-serif; font-size: 2rem; color: var(--primary);">Admission Inquiries</h2>
+  <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline" style="padding: 0.5rem 1rem;">&larr; Back to Dashboard</a>
+</div>
+
+<div style="overflow-x: auto;">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Student Name</th>
+        <th>Grade</th>
+        <th>Parent Name</th>
+        <th>Contact</th>
+        <th>Queries</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for inquiry in inquiries %}
+      <tr>
+        <td style="white-space: nowrap; color: var(--text-muted);">{{ inquiry.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td style="font-weight: 500;">{{ inquiry.student_name }}</td>
+        <td>{{ inquiry.grade_requested }}</td>
+        <td>{{ inquiry.parent_name }}</td>
+        <td>
+          <div style="font-size: 0.9rem;">📞 {{ inquiry.mobile_number }}</div>
+          <div style="font-size: 0.9rem;">✉️ {{ inquiry.email_address }}</div>
+        </td>
+        <td style="max-width: 300px;">
+          <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+            {{ inquiry.queries or 'No specific queries.' }}
+          </p>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 3rem; color: var(--text-muted);">No admission inquiries yet.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

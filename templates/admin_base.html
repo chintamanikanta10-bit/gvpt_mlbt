@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GVP Admin Dashboard</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <style>
+    :root {
+      --admin-primary: #1e293b;
+      --admin-accent: #3b82f6;
+      --admin-bg: #f8fafc;
+      --admin-card: rgba(255, 255, 255, 0.7);
+    }
+    body {
+      background-color: var(--admin-bg);
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(210, 100%, 93%, 1) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(225, 100%, 96%, 1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(220, 100%, 94%, 1) 0, transparent 50%);
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+    }
+    .admin-header {
+      background: linear-gradient(135deg, var(--admin-primary), #0f172a);
+      color: white;
+      padding: 1.25rem 0;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .admin-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .admin-nav h1 {
+      background: linear-gradient(to right, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+    }
+    .admin-nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .admin-nav-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+    }
+    .admin-nav-links a:hover, .admin-nav-links a.active {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+    .admin-content {
+      flex: 1;
+      padding: 3rem 0;
+    }
+    .flash-messages {
+      margin-bottom: 2rem;
+    }
+    .flash-alert {
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      animation: slideInDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes slideInDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .flash-success { background-color: rgba(209, 250, 229, 0.8); color: #065f46; border: 1px solid rgba(52, 211, 153, 0.5); }
+    .flash-danger { background-color: rgba(254, 226, 226, 0.8); color: #991b1b; border: 1px solid rgba(248, 113, 113, 0.5); }
+    .flash-info { background-color: rgba(219, 234, 254, 0.8); color: #1e40af; border: 1px solid rgba(96, 165, 250, 0.5); }
+    
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--admin-card);
+      backdrop-filter: blur(16px);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .data-table th, .data-table td {
+      padding: 1.25rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .data-table th {
+      background-color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+      color: var(--admin-primary);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    .data-table tr {
+      transition: background-color 0.2s;
+    }
+    .data-table tr:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+    .admin-card {
+      background: var(--admin-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .admin-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="container admin-nav">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <h1 style="font-size: 1.25rem; font-family: 'Outfit', sans-serif;">GVP Admin Panel</h1>
+      </div>
+      
+      {% if current_user.is_authenticated %}
+      <nav class="admin-nav-links">
+        <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('admin_admissions') }}">Admissions</a>
+        <a href="{{ url_for('admin_contacts') }}">Contacts</a>
+        <a href="{{ url_for('admin_gallery') }}">Gallery</a>
+        <a href="{{ url_for('admin_logout') }}" style="color: var(--accent);">Logout</a>
+      </nav>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="admin-content container">
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash-alert flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer" style="margin-top: auto; padding: 2rem 0; text-align: center;">
+    <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; {{ current_year }} GVP MLBT School. Admin Portal.</p>
+  </footer>
+
+</body>
+</html>

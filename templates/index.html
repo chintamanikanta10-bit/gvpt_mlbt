@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Official website of Gayatri Vidya Parishad Mallimadugula Lalithamba Bangarayya Trust (GVP MLBT) School, Visakhapatnam. Redesigned GVP School 2.0 version.">
+  <title>Home | GVP MLBT School 2.0</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+  <!-- Premium Frosted Glass Header -->
+  <header class="header" id="mainHeader">
+    <div class="container nav-container">
+      <a href="{{ url_for('index') }}" class="logo-link" id="logoLink">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="GVP MLBT School Logo" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-title">GVP MLBT School</span>
+          <span class="logo-subtitle">Estd 1985 | GVP Society</span>
+        </div>
+      </a>
+
+      <!-- Mobile Hamburger Menu Button -->
+      <button class="hamburger" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="{{ url_for('index') }}" class="nav-link active" id="navHome">Home</a></li>
+          <li><a href="{{ url_for('about') }}" class="nav-link" id="navAbout">About Us</a></li>
+          <li><a href="{{ url_for('academics') }}" class="nav-link" id="navAcademics">Academics</a></li>
+          <li><a href="{{ url_for('admissions') }}" class="nav-link" id="navAdmissions">Admissions</a></li>
+          <li><a href="{{ url_for('gallery') }}" class="nav-link" id="navGallery">Gallery</a></li>
+          <li><a href="{{ url_for('contact') }}" class="nav-link" id="navContact">Contact Us</a></li>
+          <li><a href="admissions.html#inquiry-form-section" class="nav-link nav-cta" id="navCtaBtn">Apply Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-slider" id="homeHero">
+    <div class="hero-bg"></div>
+    <img src="{{ url_for('static', filename='images/hero.png') }}" alt="GVP MLBT School Campus" class="hero-img-placeholder">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <span class="hero-tag">Welcome to GVP School 2.0</span>
+        <h1 class="hero-title">Nurturing Minds,<br><span>Shaping Futures</span></h1>
+        <p class="hero-description">A legacy of academic excellence, moral values, and community service. Providing high-quality holistic education in Visakhapatnam since 1985.</p>
+        <div class="btn-group">
+          <a href="{{ url_for('academics') }}" class="btn btn-primary" id="heroAcademicsBtn">Explore Academics</a>
+          <a href="{{ url_for('admissions') }}" class="btn btn-accent" id="heroAdmissionsBtn">Admissions 2025-26</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section Strip -->
+  <section class="stats-section" id="statsSection">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card reveal-scale">
+          <div class="stat-icon">🎓</div>
+          <div class="stat-number">40+</div>
+          <div class="stat-label">Years of Legacy</div>
+        </div>
+        <div class="stat-card reveal-scale delay-100">
+          <div class="stat-icon">🔬</div>
+          <div class="stat-number">Modern</div>
+          <div class="stat-label">Science & Computer Labs</div>
+        </div>
+        <div class="stat-card reveal-scale delay-200">
+          <div class="stat-icon">☀️</div>
+          <div class="stat-number">Solar</div>
+          <div class="stat-label">Green Infrastructure</div>
+        </div>
+        <div class="stat-card reveal-scale delay-300">
+          <div class="stat-icon">📈</div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Success Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout (Welcome & Announcements) -->
+  <section class="section" id="introSection">
+    <div class="container">
+      <div class="home-layout">
+        
+        <!-- Welcome Message -->
+        <div class="welcome-col">
+          <div class="card welcome-card reveal-left" id="welcomeMessageCard">
+            <div class="welcome-img-wrapper">
+              <img src="{{ url_for('static', filename='images/principal.png') }}" alt="Principal K. Madhuravani" class="welcome-img">
+            </div>
+            <div class="welcome-content">
+              <span class="quote-icon">“</span>
+              <p class="welcome-text">Our mission extends beyond the classroom. We strive to provide a world-class schooling experience to kids of all backgrounds, combining state-of-the-art labs and skills training with deep-seated human values and character development.</p>
+              <div class="welcome-sign">
+                <p class="welcome-name">K. Madhuravani</p>
+                <p class="welcome-title">Principal, GVP MLBT School</p>
+              </div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 2.5rem;" class="reveal">
+            <h2 style="font-size: 2rem; margin-bottom: 1.25rem;">Our Educational Commitment</h2>
+            <p style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.05rem;">Established under the aegis of the Mallimadugula Lalithamba Bangarayya (MLB) Trust and managed by the prestigious <strong>Gayatri Vidya Parishad (GVP) Society</strong>, GVP MLBT School has been a beacon of learning in East Point Colony, Visakhapatnam.</p>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">The school specializes in a child-centric syllabus that blends modern academic concepts with strong co-curricular and ethical foundation building. We are dedicated to providing student-centered, skill-oriented instruction, equipping our learners with modern digital capabilities like Infosys Springboard certifications.</p>
+            <a href="{{ url_for('about') }}" class="btn btn-outline" id="readMoreAboutBtn">Read Our Full Story</a>
+          </div>
+        </div>
+
+        <!-- Announcements / Notice Board -->
+        <aside class="sidebar-col">
+          <div class="card notice-board reveal-right" id="announcementBoard">
+            <h2 class="card-title" style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.35rem;">
+              <span>🔔</span> Notice Board
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">Keep up to date with school activities and events.</p>
+            <ul class="notice-list">
+              <li class="notice-item">
+                <span class="notice-date">July 18, 2026</span>
+                <a href="{{ url_for('admissions') }}" class="notice-link">Admissions are open for the academic year 2025-26. Click here to enquire.</a>
+              </li>
+              <li class="notice-item">
+                <span class="notice-date">July 10, 2026</span>
+                <a href="{{ url_for('academics') }}" class="notice-link">Registration starts for Infosys Springboard IT Certification training.</a>
+              </li>
+              <li class="notice-item">
+                <span class="notice-date">June 20, 2026</span>
+                <a href="{{ url_for('gallery') }}" class="notice-link">Photos from the Solar Power System inauguration have been added to the gallery.</a>
+              </li>
+              <li class="notice-item">
+                <span class="notice-date">June 15, 2026</span>
+                <a href="academics.html#achievements" class="notice-link">Congratulations to our 10th Board toppers on scoring outstanding marks!</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Pillars Section -->
+  <section class="section section-bg" id="pillarsSection">
+    <div class="container">
+      <div class="section-title-wrapper reveal">
+        <h2 class="section-title">Core Pillars of GVP 2.0</h2>
+        <p class="section-subtitle">How we empower students to grow academically, socially, and emotionally.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Pillar 1 -->
+        <div class="card feature-card reveal-scale" id="pillarAcademic">
+          <div class="feature-icon-wrapper">📚</div>
+          <h3 class="feature-title">Academic Excellence</h3>
+          <p class="card-description">State-board based, student-centric curriculum focused on strong conceptual clarity, logical reasoning, and regular continuous evaluations.</p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="card feature-card accent-card reveal-scale delay-200" id="pillarValues">
+          <div class="feature-icon-wrapper">🤝</div>
+          <h3 class="feature-title">Moral & Human Values</h3>
+          <p class="card-description">Rooted in our founders' Gandhian values, we emphasize discipline, respect, empathy, and social responsibility to mold responsible citizens.</p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="card feature-card reveal-scale delay-400" id="pillarFuture">
+          <div class="feature-icon-wrapper">💻</div>
+          <h3 class="feature-title">Future-Ready Skills</h3>
+          <p class="card-description">Empowering kids with computer education, hands-on science lab sessions, and digital programs such as Infosys Springboard certifications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="mainFooter">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- School Description Column -->
+        <div class="footer-col footer-col-about">
+          <a href="{{ url_for('index') }}" class="footer-logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="GVP Logo" style="width: 45px; height: 45px;">
+            <div>
+              <h4 class="footer-logo-title">GVP MLBT School</h4>
+              <span class="footer-logo-subtitle">Estd 1985 | Visakhapatnam</span>
+            </div>
+          </a>
+          <p class="footer-about-text">A premier educational institution under the Gayatri Vidya Parishad (GVP) Society. Dedicated to imparting holistic education, skills, and ethics to prepare young minds for tomorrow.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link" aria-label="Facebook">FB</a>
+            <a href="#" class="footer-social-link" aria-label="Twitter">TW</a>
+            <a href="#" class="footer-social-link" aria-label="Instagram">IG</a>
+            <a href="#" class="footer-social-link" aria-label="LinkedIn">LN</a>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="footer-link"><a href="{{ url_for('about') }}">About Us</a></li>
+            <li class="footer-link"><a href="{{ url_for('academics') }}">Academics</a></li>
+            <li class="footer-link"><a href="{{ url_for('admissions') }}">Admissions</a></li>
+            <li class="footer-link"><a href="{{ url_for('gallery') }}">Gallery</a></li>
+            <li class="footer-link"><a href="{{ url_for('contact') }}">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Information Column -->
+        <div class="footer-col">
+          <h3>Useful Info</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="admissions.html#inquiry-form-section">Admission Inquiry</a></li>
+            <li class="footer-link"><a href="about.html#infrastructure">Campus & Labs</a></li>
+            <li class="footer-link"><a href="academics.html#initiatives">Special Initiatives</a></li>
+            <li class="footer-link"><a href="admissions.html#faq-section">General FAQs</a></li>
+            <li class="footer-link"><a href="contact.html#google-map-section">Find Us on Map</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Information Column -->
+        <div class="footer-col">
+          <h3>Contact Details</h3>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <span>📍</span>
+              <div>East Point Colony, Visakhapatnam - 530017, Andhra Pradesh, India</div>
+            </li>
+            <li class="footer-contact-item">
+              <span>📞</span>
+              <div><a href="tel:08912512355">0891-2512355</a> (Office)</div>
+            </li>
+            <li class="footer-contact-item">
+              <span>✉️</span>
+              <div><a href="mailto:gvpmlbtschool@gmail.com">gvpmlbtschool@gmail.com</a></div>
+            </li>
+            <li class="footer-contact-item">
+              <span>⏰</span>
+              <div>Mon - Sat: 8:30 AM - 4:00 PM</div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Credits -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 GVP MLBT School. All Rights Reserved. Managed by Gayatri Vidya Parishad.</p>
+        <p class="footer-credits">Redesigned with ❤️ to GVP School 2.0 version</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
