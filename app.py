@@ -203,15 +203,15 @@ def admin_gallery_update_priority(id):
     flash('Priority updated successfully.', 'success')
     return redirect(url_for('admin_gallery'))
 
+with app.app_context():
+    db.create_all()
+    # Create default admin if not exists
+    if not AdminUser.query.filter_by(username='admin').first():
+        hashed_pw = generate_password_hash('admin')
+        default_admin = AdminUser(username='admin', password_hash=hashed_pw)
+        db.session.add(default_admin)
+        db.session.commit()
+        print("Default admin created (admin:admin)")
+
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-        # Create default admin if not exists
-        if not AdminUser.query.filter_by(username='admin').first():
-            hashed_pw = generate_password_hash('admin')
-            default_admin = AdminUser(username='admin', password_hash=hashed_pw)
-            db.session.add(default_admin)
-            db.session.commit()
-            print("Default admin created (admin:admin)")
-            
     app.run(debug=True,port=8080)
